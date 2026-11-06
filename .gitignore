@@ -1,0 +1,7 @@
+target/
+Campus-Smart-Parking/
+.idea/
+.vscode/
+*.iml
+.env
+*.log
