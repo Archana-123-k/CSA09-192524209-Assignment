@@ -1,0 +1,24 @@
+TASK 4 – Design Classes, Objects and Constructors (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Design the classes identified in Task 1 and decide how their objects will be created. Discuss:
+• The fields and methods of each class
+• Default, parameterised and overloaded constructors, and when each is used
+• Use of the this keyword and constructor chaining to avoid repeated code
+• Whether a copy constructor is needed anywhere (for example: re-issuing a duplicate ticket) and why
+• How objects are stored in memory (reference variables, stack and heap)
+
+Alternative Concept and Complexity Analysis
+You used overloaded constructors and constructor chaining. If objects were instead created with a default constructor followed by setter calls, or through static factory methods, what would the solution be? Compare how each approach guarantees a valid object, and analyse the time and space cost of creating n ParkingTicket objects in each approach.
+
+Evidence Expected: Class definitions with justified constructors, use of this and constructor chaining, and an explanation of object creation.
+
+ANSWER
+Classes and fields: Vehicle(regNo,type); ParkingSlot(floor,slotNo,occupied); ParkingTicket(ticketNo,Vehicle,ParkingSlot,entryTime,exitTime); ParkingFacility(slots,activeTickets); ParkingUser(id,category,pass); ParkingPass(validFrom,validTo); PricingRule. Methods include allocate/release, enter/exit, calculateFee, validatePass and recordPayment. Fields are private; identity/time data should be immutable where possible.
+
+Default constructors suit a genuinely valid default object; parameterized constructors create ready-to-use domain objects; overloaded constructors can accept registration only (system time) or explicit registration/time for deterministic tests. `this(...)` chains an overload to a single validating constructor and `this.field` distinguishes a field from a parameter. Copying a ticket must not copy its unique ID. If a replacement/reissued ticket is needed, create a new ID and optionally store a reference to the old ticket.
+
+Memory: local reference variables are typically stored in a thread stack frame; `new` creates an object on the heap. Variables/collections hold references to objects. Java passes a copy of the reference value to a method: mutating the referenced object can be visible to the caller, but reassigning the method's local reference is not. A returned object returns a reference. After exit, a ticket may remain reachable through history/database; an unreferenced in-memory object is eligible for garbage collection, but collection time is not guaranteed.
+
+Alternative construction: default constructor plus setters takes O(1) time per object and O(n) to create n, but permits invalid partially initialized state; each setter must validate and identity may change. Parameterized constructor validates invariants before publishing an object; O(n) total time and O(n) heap space for n objects. A static factory can name intent, validate, return subtype/cache, and delegate to a constructor; same O(n) total time/space. All designs store n records in O(n); constructors/factories are preferable for invariants, while setters are useful for legitimately mutable fields.

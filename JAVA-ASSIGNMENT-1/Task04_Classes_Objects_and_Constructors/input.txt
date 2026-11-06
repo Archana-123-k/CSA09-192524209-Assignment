@@ -1,0 +1,1 @@
+Original registration TN01AB1111; constructor chaining registration TN02CD2222; copy constructor creates a new ticket ID.

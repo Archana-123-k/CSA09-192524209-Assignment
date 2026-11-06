@@ -1,0 +1,2 @@
+# Complexity
+One object construction is O(1) time; n ticket constructions O(n); storage O(n). Constructor chaining does not change asymptotic complexity. Setter, constructor, or static factory creation all use O(1) per object; factory may add validation/caching. Copying one ticket is O(1), but unique ID allocation is required.

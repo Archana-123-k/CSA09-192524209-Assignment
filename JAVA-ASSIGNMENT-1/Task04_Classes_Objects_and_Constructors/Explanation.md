@@ -1,0 +1,2 @@
+# Task 4 concepts
+Constructors establish a valid object. Overloaded constructors offer convenient entry points; this(...) chains to one validation path. A copy constructor should not duplicate unique ticket IDs. Local references and method frames are commonly stack-managed; objects are heap allocated and become GC-eligible only when unreachable.
