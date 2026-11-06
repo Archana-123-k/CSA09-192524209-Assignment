@@ -1,0 +1,2 @@
+# Complexity
+Linear lookup in parallel arrays/Vehicle[]: worst O(n) time, O(1) auxiliary space. HashMap lookup: expected O(1), worst O(n), O(n) storage. Storing n vehicles with a attributes: O(n·a) data; object design adds headers/references but avoids synchronized-array maintenance.

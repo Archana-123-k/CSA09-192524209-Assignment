@@ -1,0 +1,2 @@
+Find registration: Vehicle[registration=TN01AB1111, type=CAR]
+Active count: 1

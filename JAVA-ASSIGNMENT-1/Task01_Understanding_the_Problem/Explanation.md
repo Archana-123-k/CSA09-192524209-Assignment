@@ -1,0 +1,2 @@
+# Task 1 concepts
+Object-oriented analysis maps domain nouns to classes only when they own state or a rule. Vehicle, ParkingSlot, ParkingTicket, ParkingFacility, ParkingUser and Pass have distinct identities or invariants. Operations such as allocate, enter, exit and fee calculation become methods on the object responsible for that behavior. Parallel arrays are possible but require synchronized indexes. See Answer.txt for the PDF question and full justification.

@@ -1,0 +1,43 @@
+TASK 1 – Understand the Problem and Identify the Objects (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Analyse the parking problem and identify the objects that a Java program must model. Discuss:
+• The inputs the system receives and the outputs it must produce
+• The nouns in the problem that become candidate classes, and the verbs that become methods
+• The responsibilities of each candidate class
+• The business rules every valid operation must satisfy (for example: a slot cannot hold two vehicles; a ticket number is never reused)
+• Any assumptions you make about the facility
+You are expected to justify why each candidate class is needed, not merely list names.
+
+Alternative Concept and Complexity Analysis
+In your design each vehicle is an object. If the vehicles were instead stored as plain Strings in parallel arrays (regNo[], type[], entryTime[]), what would the solution look like? Compare both designs for finding a vehicle by registration number and for adding a new vehicle attribute. Analyse the time complexity of the search and the space used per vehicle in each design.
+
+Evidence Expected: A clear problem analysis with candidate classes, their responsibilities, business rules and stated assumptions.
+
+ANSWER
+1. Inputs and outputs
+Inputs are registration number, vehicle type, entry timestamp (normally system generated), exit request/ticket, user identity/category, pass data and EV charging units. Outputs are assigned floor/slot, unique ticket number, entry/exit timestamps, duration, parking fee, charging fee, pass decision, released slot, current availability and daily collection.
+
+2. Candidate classes, responsibilities, and why
+• ParkingFacility owns floors and slots and coordinates entry, exit, allocation and occupancy. It is necessary because allocation is a facility-wide operation.
+• ParkingSlot stores floor/slot identity, suitability and occupied state. It protects the invariant that one slot cannot contain two vehicles.
+• Vehicle stores registration and vehicle category and exposes vehicle behavior. A Vehicle abstraction prevents unrelated code from repeating shared identity.
+• ParkingTicket links one vehicle to one slot and records unique ticket number, entry/exit times and fee. It is necessary to track one parking visit independently from the vehicle.
+• ParkingUser represents student, staff or visitor identity; pass eligibility belongs to the account, not the physical vehicle.
+• ParkingPass represents validity and eligibility; it separates entitlement from pricing.
+• PricingRule/FeeCalculator owns the fee algorithm so changing a rate does not rewrite slot allocation.
+• Payment/Report records settlement and summarizes collection.
+
+Nouns are candidate data objects; verbs become methods: allocateSlot, releaseSlot, enter, exit, calculateFee, validatePass, recordPayment and generateReport. These classes are justified by separate state or invariants, not merely by nouns in a sentence.
+
+3. Business rules
+A slot is free or occupied by one active ticket, never both. A registration has at most one active ticket. Ticket IDs are unique and never reused. Entry must allocate a suitable free slot before creating an active ticket. Exit must find an active ticket, calculate fees, close the ticket and release exactly its slot. Invalid entry/exit must not partially update occupancy. A valid pass applies only within its validity period. Visitors without a valid pass pay the applicable parking fee. Charging is separately recorded for EVs.
+
+4. Assumptions
+The PDF gives no concrete hourly prices, daily cap, EV unit price, registration validation format or exact time-zone policy. These must be configurable and clearly stated in tests rather than invented as PDF requirements. Timestamps come from the system. One active ticket per registration is enforced. Facility capacities are fixed during a run unless administratively changed.
+
+5. Alternative: parallel arrays
+Use String[] regNo, VehicleType[] type, LocalDateTime[] entryTime, with index i describing one vehicle. Add/remove/search must update all arrays at the same index. A linear registration search is worst-case O(n), same as a Vehicle[] scan. Adding a field requires adding another parallel array and updating every operation, creating synchronization/index bugs. Both designs require O(n) per-vehicle references/values, but object records have object-header/reference overhead. Vehicle objects keep related fields and behavior together; a new field is usually localized to Vehicle/constructors. A HashMap<String,Vehicle> gives expected O(1) lookup, with O(n) storage plus map overhead.
+
+Complexity: registration search over arrays/lists O(n) worst-case and O(1) auxiliary space. Storage is O(n·a) for n vehicles with a attributes. HashMap expected lookup O(1), space O(n).
