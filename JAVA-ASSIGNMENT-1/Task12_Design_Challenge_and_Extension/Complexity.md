@@ -1,0 +1,2 @@
+# Complexity
+Jagged slot allocation O(N) worst-case, O(1) for direct indexed cell access; total storage O(N). Hourly/E-bike pricing O(1). DeliveryVan pricing loops over h started hourly segments, O(h) time and O(1) auxiliary space. Pass lookup O(p) over p passes, each coverage check O(1).

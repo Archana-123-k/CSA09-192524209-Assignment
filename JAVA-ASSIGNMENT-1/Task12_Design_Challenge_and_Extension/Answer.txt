@@ -1,0 +1,30 @@
+TASK 12 – Re-evaluate and Adapt the Design (8 marks)
+DAY-4 DESIGN CHALLENGE — Bloom’s Level: K5 – Evaluate
+
+ORIGINAL QUESTION
+The university introduces e-bikes (flat fee) and delivery vans (double the car rate during 9 AM–5 PM). Visitors may buy a one-day pass. The facility is extended from 3 to 5 floors with different slot counts. Re-evaluate the original design. You may RETAIN → MODIFY → or REDESIGN.
+
+A. Impact Analysis – 2 Marks
+Discuss what changed; affected classes, methods and data structures; why unequal floor counts affect arrays; and which classes must be modified rather than extended.
+Evidence Expected: Clear analysis of changes.
+
+B. Evaluation of the Original Design – 2 Marks
+Evaluate whether new types can be added only as subclasses, whether pricing is spread or localized, and whether tested classes remain unchanged.
+Evidence Expected: Technically supported evaluation.
+
+C. Adaptation or Redesign – 2 Marks
+Decide retain/modify/redesign. Describe revised structure (e.g. jagged array, Pass interface, PricingRule abstraction), explain changes and implement new types and one-day pass; or justify retaining.
+Evidence Expected: Appropriate response with working code.
+
+D. Evidence-Based Defence – 2 Marks
+Defend the decision using classes changed, future extensibility, new-category tests and trade-offs.
+Evidence Expected: Evidence-based final decision integrating OOP principles and tests.
+
+ANSWER
+A. Impact. Add e-bike flat pricing, van time-specific pricing, visitor pass validity, and five unequal capacity arrays. Any equal-floor formula or three-floor hard-code breaks. Vehicle type enum/factory, pricing and pass logic, and floor configuration are affected. A monolithic fee switch and rectangular array would need modification.
+
+B. Evaluation. Vehicle inheritance remains useful for shared identity but subtype-only pricing is insufficient for time-varying policies. Rates should be localized behind PricingRule strategies. Slot allocation's floor-major search can remain unchanged when rows become jagged. Existing allocation/ticket behaviors should be regression-tested; pricing/pass classes and configuration must be extended.
+
+C. Decision: MODIFY, retaining the validated ticket/entry/exit core. New design has abstract Vehicle; PricingRule interface with hourly, e-bike flat and van peak rules; Pass interface with MonthlyPass and OneDayPass; `String[][]` jagged layout with independent configured row sizes. One-day pass validity is capped at 24 hours. An EV uses car parking rate plus charge fee. `Main.java` demonstrates the complete changed policy and tests.
+
+D. Defence/trade-offs. Existing core domain/ticket and first-free slot algorithm remain; new PricingRule, Pass implementations and vehicle types are added; service registration changes to select strategy. Future category adds a policy and registration rather than editing every pricing branch. Test output demonstrates e-bike flat fee, van peak/off-peak boundaries, visitor pass, five unequal floors and EV regression. Strategy/passes add classes and indirection but isolate changes. Jagged search O(N), storage O(N); hourly vanilla fee O(1); delivery segment pricing O(h) for h started hours; checking p passes O(p), each coverage test O(1). The design choice follows test evidence rather than claiming no modifications.

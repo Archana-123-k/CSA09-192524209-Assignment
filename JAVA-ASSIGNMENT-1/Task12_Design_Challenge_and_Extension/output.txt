@@ -1,0 +1,10 @@
+Five unequal floors              expected=12       actual=12       PASS
+Jagged slot allocation           expected=[0, 0]   actual=[0, 0]   PASS
+E-bike flat fee                  expected=15.00    actual=15.00    PASS
+Van 08:00 to 10:00               expected=90.00    actual=90.00    PASS
+Van 17:00 off-peak               expected=30.00    actual=30.00    PASS
+Van 5 PM boundary                expected=90.00    actual=90.00    PASS
+Visitor one-day pass             expected=0.00     actual=0.00     PASS
+Monthly pass regression          expected=0.00     actual=0.00     PASS
+EV parking plus 2 kWh            expected=54.00    actual=54.00    PASS
+All design challenge checks      expected=9        actual=9        PASS

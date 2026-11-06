@@ -1,0 +1,23 @@
+classDiagram
+  class Vehicle { <<abstract>> -registration -pricingRule +calculateParkingFee() }
+  class Car
+  class ElectricCar
+  class EBike
+  class DeliveryVan
+  Vehicle <|-- Car
+  Car <|-- ElectricCar
+  Vehicle <|-- EBike
+  Vehicle <|-- DeliveryVan
+  class PricingRule { <<interface>> +calculate(entry, exit) }
+  Vehicle --> PricingRule
+  class Pass { <<interface>> +covers(start, end) }
+  class MonthlyPass
+  class OneDayPass
+  Pass <|.. MonthlyPass
+  Pass <|.. OneDayPass
+  class ParkingFacility { -String[][] floors +allocate() +release() }
+  class ParkingSlot
+  class ParkingTicket
+  ParkingFacility o-- ParkingSlot
+  ParkingTicket --> Vehicle
+  ParkingTicket --> ParkingSlot

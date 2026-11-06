@@ -1,0 +1,2 @@
+# Task 12 concepts
+PricingRule encapsulates per-category policy; Pass abstracts validity. Jagged arrays support different capacities per floor. E-bike fees are flat, vans apply a doubled rate to billable hourly segments beginning from 09:00 through 16:59, visitors can hold passes no longer than 24 hours, and EV charging is separate.
