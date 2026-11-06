@@ -1,0 +1,16 @@
+TC | Scenario | Expected | Actual | Status
+Bike entry slot              | 0-0              | 0-0              | PASS
+Bike 60 minutes              | 10.00            | 10.00            | PASS
+Car 61 minutes               | 60.00            | 60.00            | PASS
+EV 130min + 10kWh            | 210.00           | 210.00           | PASS
+Monthly pass                 | 0.00             | 0.00             | PASS
+Daily collection             | 280.00           | 280.00           | PASS
+Zero minute                  | 0.00             | 0.00             | PASS
+Exact 60-min boundary        | 30.00            | 30.00            | PASS
+Last slot consumed           | 0                | 0                | PASS
+No space                     | no free slot     | no free slot     | PASS
+Duplicate registration       | duplicate registration | duplicate registration | PASS
+Unknown type                 | unknown vehicle type | unknown vehicle type | PASS
+Invalid slot                 | false            | false            | PASS
+Total checks passed          | 13               | 13               | PASS
+Manual: 10 + 60 + (90 + 120) + 0 = Rs 280.00

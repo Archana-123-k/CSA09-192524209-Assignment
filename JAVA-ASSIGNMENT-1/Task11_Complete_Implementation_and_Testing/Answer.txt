@@ -1,0 +1,25 @@
+TASK 11 – Implement, Test and Defend the Design (5 marks)
+Bloom’s Level: K5 – Evaluate
+
+ORIGINAL QUESTION
+Implement the complete system in Java and test it. Test and discuss:
+• Normal operation: vehicles of different types entering and leaving
+• Boundary cases: the last free slot, zero-minute parking, a stay exactly at a fee-slab boundary
+• Invalid cases: an unknown vehicle type, a duplicate registration number, an invalid slot number
+• A small scenario whose total collection for the day you calculate by hand and compare with the program output
+• How well your design follows encapsulation, inheritance, polymorphism and abstraction, and one limitation of it
+Your recommendation must be based on evidence from your own implementation and testing. Simply stating that the program runs is not sufficient.
+
+Alternative Concept and Complexity Analysis
+Active tickets are currently stored in an array. If they were stored in an ArrayList<ParkingTicket> or a HashMap<String, ParkingTicket> keyed by registration number, what would the exit-processing solution be? Measure and analyse the time to find a ticket on exit and the space used for n parked vehicles in each structure.
+
+Evidence Expected: Working source code, a test table with expected and actual results, and a reasoned evaluation of the design.
+
+ANSWER
+`Main.java` is a deterministic executable implementation: jagged floor slots; active tickets in a fixed array; entry, duplicate rejection, slot allocation, exit, fee receipt, pass discount, validation and daily collection. The test matrix in TestCases.md covers normal vehicle categories, last free slot, zero minutes, exact-hour boundary, unknown type, duplicate registration, invalid slot and manual daily total. Output is actual Java execution, not assumed PASS.
+
+Manual collection calculation: two-wheeler 60 min = 1×₹10=₹10; car 61 min = 2×₹30=₹60; EV 130 min = 3×₹30 + 10 kWh×₹12 = ₹210; pass-holding car = ₹0 parking; total = ₹280. Fees are stated test assumptions because Task 11 does not give rates.
+
+Design evaluation: private state and validation demonstrate encapsulation; Vehicle/Car/EV hierarchy inheritance; overridden/strategy fee dispatch polymorphism; abstract Vehicle/PricingRule abstractions. Limitation: fixed ticket array and linear exit lookup do not scale as well as a keyed structure. Recommendation is to keep the simple array for the assignment's bounded demonstration and use a HashMap/database key in production, supported by complexity below and passing output.
+
+Alternative: Ticket[] search O(n); ArrayList search by registration O(n), append amortized O(1); HashMap keyed by registration expected O(1) lookup/insert/delete, worst O(n) pathological hash; all use O(n) storage plus overhead. Actual timing depends on hardware/JVM/data size, so this submission reports executed functional cases rather than fabricated benchmark milliseconds.

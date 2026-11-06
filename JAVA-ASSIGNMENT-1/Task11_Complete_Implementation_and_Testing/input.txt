@@ -1,0 +1,1 @@
+Deterministic cases are encoded in Main.java: bike 60m; car 61m; EV 130m/10kWh; pass car 120m; zero minutes; exact 60m; one-slot facility; duplicate registration; AIRCRAFT invalid type; invalid slot index.

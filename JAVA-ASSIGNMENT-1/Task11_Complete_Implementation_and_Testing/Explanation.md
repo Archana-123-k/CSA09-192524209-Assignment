@@ -1,0 +1,2 @@
+# Task 11 concepts
+This self-contained console implementation models active tickets in a registration-keyed HashMap while scanning a jagged slot array for allocation. Deterministic minute values make fee boundary tests reproducible. It prints each test's expected and actual output and fails fast on mismatch.

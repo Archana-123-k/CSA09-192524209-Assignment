@@ -1,0 +1,2 @@
+# Complexity
+Let N be total slots and n active tickets. Slot allocation scans O(N), release O(1). Ticket[] lookup and ArrayList registration lookup O(n); HashMap keyed lookup expected O(1), worst O(n). Each representation uses O(n) ticket references/entries. Facility slot storage O(N). Daily total update O(1) per exit.
