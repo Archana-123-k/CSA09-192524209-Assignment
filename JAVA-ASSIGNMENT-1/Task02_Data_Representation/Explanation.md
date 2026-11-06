@@ -1,0 +1,2 @@
+# Task 2 concepts
+Choose types from meaning: String for registration, int for indices, LocalDateTime for time, long for elapsed seconds, enum for categories, boolean for occupancy, and BigDecimal for currency. A jagged array gives each floor its own capacity. Integer division truncates, so billing rounds started hours with integer ceiling arithmetic. See Answer.txt for layout alternatives and input choices.

@@ -1,0 +1,2 @@
+# Complexity
+Known jagged coordinate access O(1); first-free search O(N); array memory O(N). Equal-capacity flattening maps coordinates in O(1), with O(F·S) space. Unequal flattening needs O(F) prefix offsets and O(log F) floor lookup (binary search); ArrayList<String[]> indexed access O(1), search O(N), O(N) space plus list overhead.

@@ -1,0 +1,24 @@
+TASK 2 – Choose the Data Representation (3 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Decide how the data of the system will be represented using Java data types and arrays. Discuss:
+• The data type chosen for each field (slot number, vehicle number, entry time, duration, fee) and why
+• How the floors and slots will be represented (one-dimensional, two-dimensional or jagged array) and why
+• Where type conversion or casting is required (for example: converting minutes to hours for billing) and the risk of losing precision
+• How you will read input (Scanner or command-line arguments)
+Show at least one example where integer division or an incorrect cast would produce a wrong fee, and how your design avoids it.
+
+Alternative Concept and Complexity Analysis
+Instead of a jagged array String[floor][slot], suppose the slots are stored in a single one-dimensional array using index = floor × slotsPerFloor + slot, or in an ArrayList<String[]>. What would change in your solution when floors have different numbers of slots? Analyse the time to locate a slot and the space required in each representation.
+
+Evidence Expected: Justified choice of data types and array structure, with an identified casting risk and its resolution.
+
+ANSWER
+Use int for floor and slot indices; String for registration numbers (letters/leading zeroes); LocalDateTime for timestamps; long for elapsed seconds/minutes; boolean for occupancy; enum for vehicle category; BigDecimal for fees and energy charges to avoid binary floating point currency errors. Arrays use zero-based internal indexes; user-facing slot numbers can be one-based.
+
+For fixed but unequal floor capacities, use int[] slotsPerFloor and a jagged array String[][] slots where each row is allocated to that floor's capacity. Null denotes an empty slot. A rectangular two-dimensional array wastes positions if capacities differ. A single one-dimensional array is simple only for equal floor capacities. For unequal capacities, a prefix-offset table is needed to map a (floor,slot) pair; locate its offset with a small floor scan or binary search. ArrayList<String[]> retains variable row lengths and dynamic row modification, but indexed access is still O(1).
+
+Conversion: integer division truncates: 75/60 is 1, so a car charged ₹30 per started hour would incorrectly be charged ₹30 instead of ₹60. Casting after division `(double)(75/60)` still gives 1.0. Correct nonnegative whole-minute rounding is `(minutes + 59) / 60`; for exact elapsed seconds use ceiling `(seconds + 3599) / 3600`. A zero-minute policy must be explicit. Use BigDecimal for currency. Scanner is appropriate for the PDF's console programs; parse a whole line, validate, and catch invalid enum/input. Command-line arguments are suitable for repeatable automated runs; web JSON is used in the application.
+
+Complexity: known jagged coordinates access in O(1), search for a free slot O(N) for N total slots; space O(N), with no unused rectangular cells. Equal-capacity flattened index access is O(1), O(F·S) space. Unequal flattened arrays need prefix offsets (O(F) extra); offset search O(log F) with binary search, then O(1) access. ArrayList<String[]> access is O(1) by index, search O(N), and storage O(N) plus list references/capacity overhead.
