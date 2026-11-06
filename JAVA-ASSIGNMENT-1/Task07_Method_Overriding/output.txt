@@ -1,0 +1,2 @@
+Car[TN02B2] -> Rs 60.0
+Equal: true, same hash: true

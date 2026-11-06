@@ -1,0 +1,2 @@
+# Complexity
+Virtual method dispatch and hourly fee calculation are expected O(1), O(1) auxiliary space. A type switch has O(1) for a compiled constant enum switch in practice and conceptually up to O(k) branches. Both models store O(1) per vehicle. equals/hashCode are O(r) for registration length r.

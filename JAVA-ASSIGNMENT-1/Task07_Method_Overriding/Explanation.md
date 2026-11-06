@@ -1,0 +1,2 @@
+# Task 7 concepts
+Override methods with matching signatures and use @Override to let the compiler check intent. Equal objects must have equal hash codes. final protects identity and invariant methods from mutation or unsafe overriding. See Answer.txt for switch-vs-overriding analysis.

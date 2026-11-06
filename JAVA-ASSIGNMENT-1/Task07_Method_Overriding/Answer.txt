@@ -1,0 +1,21 @@
+TASK 7 – Override and Specialise Behaviour (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Identify the behaviour that must differ between subclasses and implement it by method overriding. Discuss:
+• Which methods are overridden (for example: calculateFee()) and why the subclass version is needed
+• Use of the @Override annotation and the rules of overriding (signature, return type, access)
+• Where the final keyword is appropriate for a variable, method or class, and why
+• How toString(), equals() and hashCode() are overridden so that two Vehicle objects with the same registration number are treated as equal
+
+Alternative Concept and Complexity Analysis
+Each subclass overrides the fee method. If a single calculateFee() with a switch on a type field were used instead of overriding, what would the solution be? Analyse the time per fee calculation for k vehicle types and the number of classes that must change when a new type is added.
+
+Evidence Expected: Correct overriding with @Override, justified use of final, and correct Object-class method overrides.
+
+ANSWER
+Subclasses specialize the rate/fee method (e.g. `ratePerHour()` or `calculateFee()`) because the formula differs by vehicle category. `@Override` asks the compiler to confirm a valid override. Method name and parameter signature must match; return type must match or be covariant; visibility cannot be reduced. Static methods are hidden rather than dynamically overridden; private methods are not inherited for override.
+
+Use `final` for immutable registration/ticket identifiers; a final method for invariant fee rounding that subclasses must not weaken; final class for a value type that is not designed for extension. `toString()` provides diagnostic content. `equals()` compares registration identity, and `hashCode()` uses the same identity fields. Equal objects must have equal hash codes for HashMap/HashSet correctness. If registration is not globally unique, facility ID must also be compared.
+
+Alternative switch: one Vehicle class contains type and a central switch in calculateFee. With a fixed enum, switch is effectively O(1); conceptually up to k branches. Overridden dispatch is O(1) expected. A new category in a switch requires editing the central fee class and often other branches; polymorphic approach adds a specialized subclass/policy, reducing modifications. Both store O(1) state per vehicle and compute fee in O(1) for hourly formulas.
