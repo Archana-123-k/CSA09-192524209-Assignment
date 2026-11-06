@@ -1,0 +1,5 @@
+Ticket counter initialized
+Returned object: Ticket-1
+Occupancy north/south: 1/1
+Tickets issued: 2
+Ticket reference cleared; eligible only if no other references remain

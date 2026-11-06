@@ -1,0 +1,21 @@
+TASK 5 – Apply static Members and the Object Life Cycle (3 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Identify the data and behaviour that belong to the class as a whole rather than to individual objects. Discuss:
+• Where static variables are needed (for example: a ticket counter, total occupancy) and why an instance variable would be wrong
+• Where static methods or a static block are appropriate
+• What happens to a ParkingTicket object after the vehicle leaves, and when it becomes eligible for garbage collection
+• How objects are passed to and returned from methods in your design
+
+Alternative Concept and Complexity Analysis
+The ticket counter is a static variable. If it were made an instance variable of ParkingFacility, what would happen when the university runs two facilities (north and south gates)? Propose the solution for each case and analyse the space used by the counter for k facility objects and n tickets.
+
+Evidence Expected: Correct and justified use of static members with an explanation of object passing and the object life cycle.
+
+ANSWER
+A ticket-number sequence shared by all facilities in one process is static on ParkingTicket, because per-ticket counters would each start from the same value and collide. Static methods can allocate a new ID or expose issued count without an instance. A static block is suitable for one-time counter/config initialization. Occupancy is instance state of ParkingFacility: north and south gates have independent capacities and current occupancy, so a global static occupancy would mix them.
+
+After vehicle exit, an active-ticket collection removes the ticket reference, while persistent history can remain in the database. Once no strong references to an in-memory object remain, it is eligible for garbage collection; Java does not guarantee when collection occurs. Objects are passed by value of reference: a method may mutate the referenced object, but reassigning its local reference does not change the caller's variable. Methods can return a ParkingTicket reference.
+
+Alternative: instance counter on each of k facilities consumes O(k) counter storage; IDs can collide (both gates issue ticket 1) unless IDs are qualified by facility. A static global counter consumes O(1) counter storage for k facilities and n tickets and provides global uniqueness. Both allocate each ID in O(1) and n tickets in O(n) total time. UUIDs are another global uniqueness choice, with fixed-size per-ticket ID storage.

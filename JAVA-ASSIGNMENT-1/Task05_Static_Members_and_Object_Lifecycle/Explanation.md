@@ -1,0 +1,2 @@
+# Task 5 concepts
+Static ticket sequence data belongs to the class and is shared. Occupancy belongs to each Facility instance. Methods receive a copy of an object reference; they can mutate the referenced object. Removing a reference may make an object eligible for garbage collection, but does not force collection.

@@ -1,0 +1,2 @@
+# Complexity
+Static ID allocation O(1) per ticket, O(n) for n tickets and O(1) shared counter space. Instance counters require O(k) counter space for k facilities and can collide without qualified IDs. Occupancy updates O(1) per facility. Garbage collection complexity/timing is JVM-managed and is not part of application operation guarantees.

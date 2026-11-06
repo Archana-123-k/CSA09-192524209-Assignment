@@ -1,0 +1,1 @@
+Create North and South facilities; issue one ticket at each; clear the local reference to the North ticket.
