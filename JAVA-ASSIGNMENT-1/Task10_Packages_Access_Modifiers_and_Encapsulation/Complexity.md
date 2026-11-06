@@ -1,0 +1,2 @@
+# Complexity
+Scalar validation/setter O(1) per update; duplicated validations have the same per-call time but maintenance repetition across m call sites. Unique-registration list check O(n); indexed HashMap expected O(1). Wrapper comparison is O(1) except String equality may be O(r).

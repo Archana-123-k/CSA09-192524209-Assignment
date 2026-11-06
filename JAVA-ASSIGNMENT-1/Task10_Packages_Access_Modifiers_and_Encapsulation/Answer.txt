@@ -1,0 +1,21 @@
+TASK 10 – Enforce Encapsulation through Packages and Access Modifiers (3 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Organise your classes into packages and protect the data of each class. Discuss:
+• Your package structure (for example: parking.model, parking.service, parking.app)
+• The access modifier chosen for each field and method (private, default, protected, public) and why
+• How getters and setters validate data (for example: rejecting a negative duration or an invalid slot number)
+• Where wrapper classes and autoboxing are used, and any risk they introduce (for example: comparing Integer objects with ==)
+
+Alternative Concept and Complexity Analysis
+Your fields are private with validating setters. If the fields were made public and validation were done by the calling code, what would the solution be and what could go wrong? Analyse the time cost of validation per update and the number of places where the same check would have to be repeated.
+
+Evidence Expected: A package structure, justified access modifiers and validated getters and setters that protect the object state.
+
+ANSWER
+Organize classes into parking.model/domain (vehicle, ticket, slot, user), parking.service (operations/business rules), parking.pricing (policies), parking.persistence (database), parking.app/api (entry points/controllers). Fields are private to preserve invariants; public methods form supported API; protected methods allow subclass extension; package-private members remain internal to a package. Avoid exposing mutable identity fields.
+
+Getters expose read state. Setters/constructors validate nonblank registration, nonnegative duration/fee/energy, and slot indices within configured floor bounds. Wrapper Integer/Long are used where nullable values or generic collections require objects. Autoboxing converts primitive to wrapper; unboxing null throws NullPointerException. `Integer a=1000,b=1000; a==b` compares references and can be false; use `Objects.equals(a,b)` or `a.equals(b)` after null checking. Primitive int `==` compares values.
+
+Public-field alternative requires callers to repeat validation, allowing a missed check to store negative duration or invalid slot. Validation of a scalar remains O(1) per update, but duplicated checks spread to m call sites and multiply maintenance effort; encapsulation validates once at the boundary. Lookup-based uniqueness can be O(n) in an unsorted list or expected O(1) with a HashMap/index.

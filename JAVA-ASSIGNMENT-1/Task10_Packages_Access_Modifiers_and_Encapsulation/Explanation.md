@@ -1,0 +1,2 @@
+# Task 10 concepts
+Packages separate model, service and application boundaries. private state plus validated constructors/setters centralizes invariants. Wrapper objects may be null; compare their values with equals/Objects.equals, not ==.

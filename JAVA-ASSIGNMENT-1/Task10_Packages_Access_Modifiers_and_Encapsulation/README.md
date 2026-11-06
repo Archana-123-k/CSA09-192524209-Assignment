@@ -1,0 +1,2 @@
+# Task 10
+Run `javac Main.java` then `java Main` for wrapper/encapsulation behavior. To compile the separate package-boundary demo, run `javac -d out src\parking\model\Vehicle.java src\parking\app\PackageDemo.java` then `java -cp out parking.app.PackageDemo`. The package/access discussion is in Answer.txt.

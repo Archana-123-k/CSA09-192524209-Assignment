@@ -1,0 +1,3 @@
+Public getter: TN10PK1000
+Protected access through subclass: CAR
+Default access: same-package only; not accessible from parking.app
