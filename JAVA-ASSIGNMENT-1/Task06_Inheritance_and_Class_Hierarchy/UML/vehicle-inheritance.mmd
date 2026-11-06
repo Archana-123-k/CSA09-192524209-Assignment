@@ -1,0 +1,15 @@
+classDiagram
+  class Vehicle { <<abstract>> -String registration +calculateFee(minutes) double }
+  class TwoWheeler
+  class Car
+  class ElectricCar
+  Vehicle <|-- TwoWheeler
+  Vehicle <|-- Car
+  Car <|-- ElectricCar
+  class ParkingUser { <<abstract>> -String name }
+  class Student
+  class Staff
+  class Visitor
+  ParkingUser <|-- Student
+  ParkingUser <|-- Staff
+  ParkingUser <|-- Visitor

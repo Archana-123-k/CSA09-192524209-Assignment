@@ -1,0 +1,2 @@
+# Complexity
+Object construction and virtual fee dispatch are O(1). Fee evaluation is O(1) for a constant-time rate formula. Each vehicle stores O(1) fields; composition adds a policy reference. Adding a policy is code/configuration work, not runtime cost. A linear policy search would be O(k) for k categories.

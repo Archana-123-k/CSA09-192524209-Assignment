@@ -1,0 +1,2 @@
+# Task 6 concepts
+Vehicle is the common abstract superclass. Car and TwoWheeler illustrate hierarchical inheritance; ElectricCar extends Car to show multilevel inheritance. super(...) initializes parent state before child construction. UML source and rendered SVG are in UML_Diagrams.

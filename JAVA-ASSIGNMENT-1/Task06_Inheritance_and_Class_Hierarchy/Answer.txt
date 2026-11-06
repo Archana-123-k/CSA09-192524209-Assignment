@@ -1,0 +1,24 @@
+TASK 6 – Design the Inheritance Hierarchy (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Design an inheritance hierarchy for the vehicles and, if appropriate, for the users (student, staff, visitor). Discuss:
+• The superclass and subclasses, and the type of inheritance used (single, multilevel or hierarchical)
+• What is inherited and what is added in each subclass
+• How super is used for fields, methods and constructors
+• The order in which constructors execute when an ElectricCar object is created, shown by a trace
+Draw the hierarchy as a UML class diagram.
+
+Alternative Concept and Complexity Analysis
+You used inheritance (Car is-a Vehicle). If composition were used instead – a single Vehicle class that has-a VehicleType object holding the rate – what would the solution be? Compare the work needed to add a new vehicle type and analyse the time to compute a fee and the space per vehicle object in both designs.
+
+Evidence Expected: A justified inheritance hierarchy, UML diagram, use of super and a traced constructor execution order.
+
+ANSWER
+Vehicle is an abstract superclass with registration/common behavior. TwoWheeler and Car are direct subclasses (hierarchical inheritance). ElectricCar extends Car (multilevel inheritance) because it is a car with extra charging capability. Student, Staff and Visitor may extend a shared ParkingUser where common identity/category behavior exists. Vehicle fields remain private; subclasses use getters and protected extension methods.
+
+A subclass constructor's first statement may call `super(regNo)` to initialize inherited state. `super.method()` reuses an implementation. The explicit `super.field` form only accesses a visible inherited field; protected fields are possible but private encapsulation plus accessors is safer.
+
+Constructor trace for ElectricCar: ElectricCar constructor starts -> calls Car constructor -> calls Vehicle constructor -> Vehicle initializes registration -> Car constructor completes -> ElectricCar constructor completes. The trace is included in Main.java.
+
+Composition alternative: `Vehicle` has a VehicleType/PricingRule field. Adding a type means adding/configuring a policy rather than subclassing. Inheritance expresses stable “is-a” relationships and allows virtual dispatch; composition allows runtime policy replacement and avoids deep hierarchies. Fee computation is O(1) with virtual dispatch or direct strategy reference; a linear switch/check may be O(k) for k types. Per-vehicle storage is O(1) either way; composition adds a strategy reference (policies can be shared). UML is in UML_Diagrams/vehicle-inheritance.svg.
