@@ -1,0 +1,25 @@
+TASK 8 – Apply Polymorphism (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Demonstrate both compile-time and runtime polymorphism in your design. Discuss:
+• At least one overloaded method (for example: calculateFee(int minutes) and calculateFee(LocalTime in, LocalTime out)) and how the compiler selects it
+• How a single array of Vehicle references can hold different vehicle types (upcasting)
+• How dynamic method dispatch selects the correct calculateFee() at runtime
+• Why this design avoids long if–else chains that test the vehicle type
+Trace one call through dynamic method dispatch, showing the declared type, the actual object type and the method executed.
+
+Complete the Code
+Complete the Vehicle hierarchy given on pages 7–8 and execute FeeDemo. Fill TODO 1 in calculateFee(), TODO 2 in Car and TODO 3 in ElectricCar. Do not change main(). Explain why the last line prints true and decide whether this is correct behavior.
+
+Alternative Concept and Complexity Analysis
+You used dynamic method dispatch. If the same behaviour were written using instanceof checks and casting for each vehicle type, what would the solution be? Analyse time per call for k vehicle types (O(1) dispatch versus up to k checks) and code size/maintenance.
+
+Evidence Expected: Working examples of overloading and dynamic dispatch with a traced call and explanation of the design benefit.
+
+ANSWER
+Compile-time polymorphism: overload `calculateFee(int minutes)` and `calculateFee(LocalTime in, LocalTime out)`; compiler selects from argument types/arity. Runtime polymorphism: upcast Car and ElectricCar objects into Vehicle references in `Vehicle[]`. Trace: declared type Vehicle; actual object ElectricCar; `calculateFee(130)` inherited from Vehicle invokes overridable `ratePerHour()` dynamically; ElectricCar inherits Car's 30 rate. The interface check adds 10×12 charging.
+
+The expected program output: TwoWheeler TN01A1 -> Rs 30.0; Car TN02B2 -> Rs 90.0; ElectricCar TN03C3 -> Rs 210.0; true. At 130 min, integer ceiling is (130+59)/60=3. Fees are 3×10=30, 3×30=90, and 90+10×12=210. The last line is true because Vehicle.equals compares only registration; Car and ElectricCar are equal when registration matches. This is correct if registration is a globally unique vehicle identity. If same registration could exist in multiple facilities, include facility identity.
+
+An instanceof/cast chain checks up to k types, worst O(k) comparisons and must be modified centrally for new types. Dynamic dispatch is expected O(1), avoids branch chains and isolates behavior. Auxiliary space O(1). Exact completed source is in Main.java; the provided main() is preserved.

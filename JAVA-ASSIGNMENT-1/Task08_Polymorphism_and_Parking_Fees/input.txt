@@ -1,0 +1,1 @@
+No interactive input. The unchanged main() evaluates each vehicle for 130 minutes and uses 10 kWh for Chargeable vehicles.

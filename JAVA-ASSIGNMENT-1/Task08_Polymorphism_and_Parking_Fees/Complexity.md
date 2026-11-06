@@ -1,0 +1,2 @@
+# Complexity
+Overload resolution occurs at compile time. Runtime dispatch is expected O(1). An instanceof chain is O(k) worst-case for k concrete types. Fee math O(1), O(1) auxiliary memory. Equality/hash operate in O(r) for registration string length r.
