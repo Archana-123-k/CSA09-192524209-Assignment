@@ -1,0 +1,3 @@
+Vehicle: TN03C3
+Energy: 2 kWh
+Total: Rs 84.0

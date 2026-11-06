@@ -1,0 +1,20 @@
+TASK 9 – Introduce Abstraction (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Use abstract classes and interfaces to separate what the system does from how it is done. Discuss:
+• Which class should be abstract (for example: Vehicle) and which methods should be abstract
+• Which capability should be an interface (for example: Chargeable for EVs, Payable for fee-paying users)
+• Why you chose an abstract class in one place and an interface in another
+• How a class can obtain multiple behaviours through interfaces
+• Where a default or static method in an interface is useful
+
+Alternative Concept and Complexity Analysis
+Vehicle is an abstract class and Chargeable is an interface. If Vehicle were changed to an interface with default methods, and Chargeable to an abstract class, what would the solution be? Identify what can no longer be expressed (constructors, state, multiple inheritance) and analyse any difference in time per method call and space per object.
+
+Evidence Expected: A justified use of at least one abstract class and one interface, with reasoning behind each choice.
+
+ANSWER
+Vehicle is abstract because it has common state (registration) and constructor validation, but no meaningful generic rate; `ratePerHour()` is abstract. Chargeable is an interface because only some vehicle types support charging. An EV can extend Car and implement Chargeable and Payable, combining class inheritance with multiple capabilities. An interface default method may render a charging summary; a static method can validate nonnegative units.
+
+If Vehicle became an interface, it could not have an ordinary constructor or per-instance mutable state; state must move to composition or be repeated. Turning Chargeable into an abstract class would use Java's single superclass slot and prevent an ElectricCar from extending Car. Interfaces can be multiply implemented. Both alternatives have O(1) expected dispatch and O(1) per-object fields asymptotically; design constraints, not runtime complexity, drive the choice.

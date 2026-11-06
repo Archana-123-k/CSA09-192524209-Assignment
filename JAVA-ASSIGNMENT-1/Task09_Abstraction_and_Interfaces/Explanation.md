@@ -1,0 +1,2 @@
+# Task 9 concepts
+An abstract class shares instance state and constructors while leaving selected behavior abstract. An interface models an optional capability and can provide default/static methods. A vehicle can extend one class and implement multiple interfaces.

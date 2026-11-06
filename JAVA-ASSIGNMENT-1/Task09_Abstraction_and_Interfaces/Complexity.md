@@ -1,0 +1,2 @@
+# Complexity
+Abstract and interface dispatch is expected O(1); per-fee strategy calculation O(1) for hourly rules. Object state uses O(1) space per vehicle. Checking p passes sequentially is O(p) with O(1) extra space.
