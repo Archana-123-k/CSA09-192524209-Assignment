@@ -1,0 +1,10 @@
+flowchart LR
+  Browser[Browser UI<br/>HTML CSS JavaScript] -->|HTTP JSON| Controller[Spring Boot REST API]
+  Controller --> Service[Parking service]
+  Service --> Pricing[PricingRule strategies]
+  Service --> Passes[Pass implementations]
+  Service --> JDBC[Spring JDBC]
+  JDBC --> MySQL[(MySQL database)]
+  MySQL --> Tables[Users Vehicles Slots Passes Tickets Payments]
+  Tests[JUnit / MockMvc] --> Service
+  Tests --> H2[(H2 in-memory database)]

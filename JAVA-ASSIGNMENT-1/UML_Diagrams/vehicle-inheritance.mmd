@@ -1,0 +1,39 @@
+classDiagram
+  class Vehicle { <<abstract>> -String registration +calculateFee(minutes) double }
+  class TwoWheeler
+  class Car
+  class ElectricCar
+  class EBike
+  class DeliveryVan
+  Vehicle <|-- TwoWheeler
+  Vehicle <|-- Car
+  Car <|-- ElectricCar
+  Vehicle <|-- EBike
+  Vehicle <|-- DeliveryVan
+  class ParkingUser { <<abstract>> -String name }
+  class Student
+  class Staff
+  class Visitor
+  ParkingUser <|-- Student
+  ParkingUser <|-- Staff
+  ParkingUser <|-- Visitor
+  class Chargeable { <<interface>> +chargingFee(kWh) double }
+  ElectricCar ..|> Chargeable
+  class PricingRule { <<interface>> +calculate(entry, exit) Money }
+  class HourlyRule
+  class EBikeFlatRule
+  class DeliveryVanRule
+  PricingRule <|.. HourlyRule
+  PricingRule <|.. EBikeFlatRule
+  PricingRule <|.. DeliveryVanRule
+  class Pass { <<interface>> +covers(start, end) boolean }
+  class MonthlyPass
+  class OneDayPass
+  Pass <|.. MonthlyPass
+  Pass <|.. OneDayPass
+  ParkingUser "1" o-- "0..*" Pass
+  ParkingTicket "1" --> "1" Vehicle
+  ParkingTicket "1" --> "1" ParkingSlot
+  ParkingFacility "1" o-- "*" ParkingSlot
+  ParkingFacility "1" o-- "*" ParkingTicket
+  ParkingTicket --> PricingRule

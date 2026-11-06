@@ -1,0 +1,2 @@
+# Database
+The working Spring Boot application's MySQL schema is in the workspace-level `src/main/resources/schema.sql` and standalone SQL in `database/campus_parking.sql`. The new academic deliverable includes the schema reference in ../README.md. MySQL is configured with environment-overridable URL/user/password in the existing application.properties.

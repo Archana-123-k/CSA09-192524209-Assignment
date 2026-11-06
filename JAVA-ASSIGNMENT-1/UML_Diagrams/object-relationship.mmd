@@ -1,0 +1,9 @@
+flowchart TB
+  User[ParkingUser] --> Pass[Pass]
+  Vehicle[Vehicle] --> Ticket[ParkingTicket]
+  Ticket --> Slot[ParkingSlot]
+  Facility[ParkingFacility] --> Slot
+  Facility --> Ticket
+  Ticket --> Payment[PaymentRecord]
+  Ticket --> Rule[PricingRule]
+  EV[ElectricCar] --> Charge[Chargeable]

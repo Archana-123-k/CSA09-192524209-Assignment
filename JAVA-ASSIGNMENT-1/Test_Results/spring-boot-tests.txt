@@ -1,0 +1,4 @@
+Executed in the workspace-level Spring Boot project with H2 in-memory database.
+ParkingFlowIntegrationTest: 6 tests, 0 failures, 0 errors, 0 skipped.
+PricingRuleTest: 2 tests, 0 failures, 0 errors, 0 skipped.
+Command: mvn test (Maven 3.9.9 downloaded to temporary directory; Java 27).
