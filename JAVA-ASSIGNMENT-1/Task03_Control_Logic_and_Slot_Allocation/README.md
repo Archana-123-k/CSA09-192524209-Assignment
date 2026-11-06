@@ -1,0 +1,2 @@
+# Task 3
+Exact PDF task title: Design the Control Logic. The completed original public class is ParkingFacility.java. Compile/run: `javac ParkingFacility.java` then `java ParkingFacility`. The provided main method is unchanged. Check expected PDF output in TestCases.md and actual output.txt.

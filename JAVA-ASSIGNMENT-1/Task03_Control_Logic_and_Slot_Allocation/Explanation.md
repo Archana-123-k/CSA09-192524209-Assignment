@@ -1,0 +1,2 @@
+# Task 3 concepts
+A nested floor/slot search returns immediately after assigning the first free cell. Bounds must be checked before accessing a jagged array. The given PDF program has only allocation and release; fee pseudocode is provided separately because the exact class has no fee API. ParkingFacility.java retains the supplied main method.

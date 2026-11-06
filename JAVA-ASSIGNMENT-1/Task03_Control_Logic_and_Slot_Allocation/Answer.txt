@@ -1,0 +1,59 @@
+TASK 3 – Design the Control Logic (4 marks)
+Bloom’s Level: K4 – Analyse
+
+ORIGINAL QUESTION
+Design the decision and looping logic for the two core operations: allocating a free slot and computing the parking fee. Discuss:
+• How the program searches the floors and slots for a suitable free slot, and when the search stops
+• How the fee slabs (for example: first hour, each additional hour, daily maximum) are expressed using if–else or switch
+• How break, continue and return are used to avoid unnecessary work
+• What happens when no suitable slot is free
+Write pseudocode for both operations following the SIMATS Engineering – Standard for Algorithmic Pseudocode before writing Java code.
+Complete the Code: Complete the ParkingFacility class on page 4 and execute it. Do not change main().
+
+Evidence Expected: Complete pseudocode for slot allocation and fee computation with correct decision and loop logic.
+
+ANSWER
+Pseudocode – ALLOCATE(vehicleNo)
+START
+  INPUT vehicleNo
+  FOR floor ← 0 TO numberOfFloors - 1
+    FOR slot ← 0 TO slots[floor].length - 1
+      IF slots[floor][slot] IS NULL THEN
+        slots[floor][slot] ← vehicleNo
+        RETURN {floor, slot}
+      END IF
+    END FOR
+  END FOR
+  RETURN NULL
+END
+
+Pseudocode – CALCULATE_FEE(vehicleType, elapsedSeconds, passValid, kWh, dailyMaximum)
+START
+  IF elapsedSeconds < 0 OR kWh < 0 THEN RETURN ERROR
+  IF passValid THEN parkingFee ← 0
+  ELSE
+    billableHours ← CEILING(elapsedSeconds / 3600)
+    SWITCH vehicleType
+      CASE TWO_WHEELER: firstRate ← 10; extraRate ← 10
+      CASE CAR: firstRate ← 30; extraRate ← 30
+      CASE ELECTRIC_CAR: firstRate ← 30; extraRate ← 30
+      DEFAULT: RETURN UNSUPPORTED_TYPE
+    END SWITCH
+    IF billableHours = 0 THEN parkingFee ← 0
+    ELSE
+      parkingFee ← firstRate + MAX(0, billableHours - 1) × extraRate
+      IF dailyMaximum IS CONFIGURED THEN parkingFee ← MIN(parkingFee, dailyMaximum)
+    END IF
+  END IF
+  IF vehicleType = ELECTRIC_CAR THEN chargingFee ← kWh × 12
+  ELSE chargingFee ← 0
+  RETURN parkingFee + chargingFee
+END
+
+The sample rates in the general pseudocode illustrate decision structure; the Task 8 code supplies its own exact rates. The PDF specifies examples of fee slabs but no actual daily maximum, so a maximum is applied only if configured, not invented. The sample Task 8 program charges every started hour and yields 3 billable hours for 130 minutes.
+
+Control logic: nested loops scan floor-major, then slot-major; return stops on the first free slot. Continue can skip unsuitable slots; break exits a loop once a result is found (return is clearer when returning). Switch selects a fee policy, if/else handles pass, zero duration and daily cap. A full facility returns null/no-space and must not issue an active ticket. release checks floor and slot bounds before indexing and rejects already-free cells.
+
+Alternative stack: initialize a stack of free {floor,slot} coordinates. allocate pops and release pushes, O(1) each; initialization O(N), extra storage O(N). It changes allocation order to LIFO and duplicate release must be prevented. Floor free counts without coordinate stacks still require a scan.
+
+Complexity: scan allocate best O(1), worst O(N), O(1) auxiliary space; release O(1); storage O(N). Fee calculation with constant slab/rule lookup O(1) time/O(1) space; time-sliced rules may be O(h) for h hourly segments.

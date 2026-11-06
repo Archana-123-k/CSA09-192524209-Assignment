@@ -1,0 +1,2 @@
+# Complexity
+Let N=sum of slots across floors. allocate scan is best O(1), worst O(N), O(1) auxiliary space; release O(1); slot storage O(N). A stack of available coordinates gives O(1) allocation/release but requires O(N) additional references and duplicate-release protection. Fee rules are O(1) for flat/hourly rates; segmented van rule O(h) for h hourly segments.
